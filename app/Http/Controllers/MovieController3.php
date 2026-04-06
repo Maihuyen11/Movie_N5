@@ -16,7 +16,6 @@ class MovieController3 extends Controller
 
     public function store(Request $request)
     {
-        // 1. Validate dữ liệu [cite: 27, 29]
         $messages = [
             'required'    => 'Trường :attribute không được bỏ trống.',
             'image'       => 'File tải lên phải là định dạng ảnh.',
@@ -34,28 +33,25 @@ class MovieController3 extends Controller
         $request->validate([
             'movie_name_en' => 'required',
             'movie_name_vn' => 'required',
-            'release_date'  => 'required|date_format:Y-m-d', // Định dạng yyyy-mm-dd [cite: 30]
+            'release_date'  => 'required|date_format:Y-m-d', 
             'overview'      => 'required',
-            'image'         => 'required|image', // Kiểm tra định dạng ảnh [cite: 28]
+            'image'         => 'required|image', 
         ], $messages, $attributes);
 
-        // 2. Tự tạo ID kế tiếp để tránh lỗi 'id doesn't have a default value'
         $maxId = DB::table('movie')->max('id');
         $newId = $maxId + 1;
 
-        // 3. Xử lý lưu trữ ảnh vào storage/app/public [cite: 3]
         $imageName = null;
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('/', 'public');
             $imageName = basename($path);
         }
 
-        // 4. Thực hiện chèn dữ liệu
         DB::table('movie')->insert([
             'id'            => $newId,
             'movie_name'    => $request->movie_name_en, 
             'movie_name_vn' => $request->movie_name_vn,
-            'original_name' => $request->movie_name_en, // THÊM DÒNG NÀY ĐỂ HẾT LỖI
+            'original_name' => $request->movie_name_en, 
             'release_date'  => $request->release_date,
             'overview'      => $request->overview,
             'image'         => $imageName,
