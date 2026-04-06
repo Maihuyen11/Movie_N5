@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>{{$title}}</title>
+        <title>{{ $title ?? 'Trang quản lý phim' }}</title>
         <link rel="stylesheet" href="{{asset('library/bootstrap.min.css')}}">
 
         <script src="{{asset('library/jquery.slim.min.js')}}"></script>
@@ -42,7 +42,7 @@
                 max-width:1200px;
                 max-height:200px;
                 height:65vh;
-                background-image:url('{{asset('images/banner.jpg')}}');
+                background-image: url('{{ asset('storage/banner.jpg') }}');
                 background-size:cover;
                 color:white;
                 margin:0 auto;
