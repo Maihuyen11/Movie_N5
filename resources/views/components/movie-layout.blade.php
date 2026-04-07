@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>{{$title}}</title>
+        <title>{{ $title ?? 'Trang quản lý phim' }}</title>
         <link rel="stylesheet" href="{{asset('library/bootstrap.min.css')}}">
 
         <script src="{{asset('library/jquery.slim.min.js')}}"></script>
