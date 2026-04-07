@@ -13,12 +13,11 @@
             </div>
         @endif
 
-        <div class="mb-3">
-           <a href="{{ route('movies.chitiet', $movie->id) }}"
-                               class="btn btn-primary btn-sm">
-                                Xem
-            </a>         
-        </div>
+        <div class="mb-3 text-left">
+    <a href="{{ route('movies.create') }}" class="btn btn-success">
+        <i class=""></i> Thêm
+    </a>        
+</div>
 
         <table id="id-table" class="table table-bordered table-striped bg-white">
             <thead>
@@ -55,7 +54,7 @@
                         <div class="d-flex justify-content-center gap-1">
 
                             {{-- Xem --}}
-                            <a href="{{ route('movies.chitiet', $movie->id) }}"
+                            <a href="{{ route('movie.chitiet', $movie->id) }}"
                                class="btn btn-primary btn-sm">
                                 Xem
                             </a>
@@ -84,14 +83,13 @@
     <script>
         $(document).ready(function() {
             $('#id-table').DataTable({
-                responsive: true,
-                pageLength: 5,
-                lengthMenu: [5, 10, 25, 50, 100],
-                bStateSave: true,
-                language: {
-                    url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/vi.json'
-                }
-            });
+                    responsive: true,
+                    pageLength: 5,
+                    lengthMenu: [5, 10, 25, 50, 100],
+                    bStateSave:true,
+                });
+
+
         });
     </script>
 </x-movie-layout>
